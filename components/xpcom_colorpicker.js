@@ -62,8 +62,6 @@ koColorPicker.prototype = {
         var prefs = Components.classes["@activestate.com/koPrefService;1"].
                         getService(Components.interfaces.koIPrefService).prefs;
         var colorMode = prefs.getString("colorpicker.colorMode", "h");
-		
-		console.log("dan maar hier");
 
         var args = {
             hexColor: hexColor,
