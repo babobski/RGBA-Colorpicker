@@ -9,8 +9,6 @@
 <script type="text/javascript" src="chrome://RGBA_colorpicker/content/js/colorPicker.js"></script>
 <script type="text/javascript">
 	
-	var self = this;
-	
 	function rgbToHex(color) {
 		if (color.substr(0, 1) === "#") {
 			return color;
@@ -61,17 +59,19 @@
 						var hexColor = rgbToHex(newColor);
 						
 						window.arguments[0].hexColor = hexColor;
-						window.arguments[0].colorMode = 'rgba';
+						window.arguments[0].colorMode = startMode;
 						window.arguments[0].opacity = newAlpha; 
 						window.arguments[0].retval = 1;
 						if (window.retval && window.arguments[0].callback) {
 							window.arguments[0].callback(hexColor, newAlpha);
 						}
 						window.close();
+					} else if (action === 'resetColor') {
+						window.close();
 					}
 				}
 			});
-		}, 200);
+		}, 50);
 		
 	});
 </script>
