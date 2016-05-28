@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="chrome://RGBA_colorpicker/content/css/index.css" rel="stylesheet" type="text/css" />
+<title>RGBA Colorpicker</title>
+<script type="text/javascript" src="chrome://RGBA_colorpicker/content/js/colors.js"></script>
+<script type="text/javascript" src="chrome://RGBA_colorpicker/content/js/colorPicker.data.js"></script>
+<script type="text/javascript" src="chrome://RGBA_colorpicker/content/js/colorPicker.js"></script>
+<script type="text/javascript">
+	
+	var self = this;
+	
+	function rgbToHex(color) {
+		if (color.substr(0, 1) === "#") {
+			return color;
+		}
+		var nums = /(.*?)rgb\((\d+),\s*(\d+),\s*(\d+)\)/i.exec(color),
+			r = parseInt(nums[2], 10).toString(16),
+			g = parseInt(nums[3], 10).toString(16),
+			b = parseInt(nums[4], 10).toString(16);
+		return "#"+ (
+			(r.length == 1 ? "0"+ r : r) +
+			(g.length == 1 ? "0"+ g : g) +
+			(b.length == 1 ? "0"+ b : b)
+		);
+	}
+	
+	function convertHex(hex,opacity){
+		hex = hex.replace('#','');
+		r = parseInt(hex.substring(0,2), 16);
+		g = parseInt(hex.substring(2,4), 16);
+		b = parseInt(hex.substring(4,6), 16);
+	
+		result = 'rgba('+r+','+g+','+b+','+opacity+')';
+		return result;
+	}
+
+	
+	window.addEventListener("load", function(e) {
+		var hexColor = window.arguments[0].hexColor;
+		var startOpacity = window.arguments[0].opacity;
+		var startMode = window.arguments[0].colorMode || 'h';
+		window.addHash = false;
+		if (hexColor[0] == "#") {
+			window.addHash = true;
+			hexColor = hexColor.substr(1);
+		}
+		
+		setTimeout(function(){
+			new ColorPicker({
+				color: convertHex(hexColor, startOpacity),
+				mode: 'hsv-h',
+				actionCallback: function(e, action){
+					if (action === 'saveAsBackground') {
+						var newColorDivParent = document.getElementsByClassName('cp-col1');
+						var newColorDiv = newColorDivParent[0].childNodes[0];
+						var newColorStyle = newColorDiv.style;
+						var newColor = newColorStyle.backgroundColor;
+						var newAlpha = newColorStyle.opacity;
+						var hexColor = rgbToHex(newColor);
+						
+						window.arguments[0].hexColor = hexColor;
+						window.arguments[0].colorMode = 'rgba';
+						window.arguments[0].opacity = newAlpha; 
+						window.arguments[0].retval = 1;
+						if (window.retval && window.arguments[0].callback) {
+							window.arguments[0].callback(hexColor, newAlpha);
+						}
+						window.close();
+					}
+				}
+			});
+		}, 200);
+		
+	});
+</script>
+</head>
+
+<body id="colorpicker">
+
+
+
+</body>
+</html>

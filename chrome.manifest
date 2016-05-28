@@ -1,0 +1,5 @@
+content RGBA_colorpicker content/
+skin RGBA_colorpicker classic/1.0 skin/
+override chrome://komodo/content/colorpicker/colorpicker.html chrome://RGBA_colorpicker/content/rgba-colorpicker.html
+component {21e60192-24fd-11e6-b67b-9e71128cae77} components/xpcom_colorpicker.js
+contract @activestate.com/koColorPicker;1 {21e60192-24fd-11e6-b67b-9e71128cae77}
