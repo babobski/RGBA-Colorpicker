@@ -7,4 +7,4 @@ Replaces the default colorpicker with a RGBA compatible Colorpicker
 ![screenshot](screenshot01.png)
 
 
-Build with the [ColorPicker](http://www.dematte.at/colorPicker/)
+Build with the [PitPik ColorPicker](http://www.dematte.at/colorPicker/)
