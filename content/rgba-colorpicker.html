@@ -49,6 +49,16 @@
 			new ColorPicker({
 				color: convertHex(hexColor, startOpacity),
 				mode: 'hsv-h',
+				memoryColors: [
+				{r: 17, g: 17, b: 17, a: 1.0},
+				{r: 255, g: 255, b: 255, a: 1.0},
+				{r: 170, g: 170, b: 170, a: 1.0},
+				{r: 221, g: 221, b: 221, a: 1.0},
+				{r: 46, g: 204, b: 64, a: 1.0},
+				{r: 255, g: 65, b: 54, a: 1.0},
+				{r: 255, g: 220, b: 0, a: 1.0},
+				{r: 0, g: 116, b: 217, a: 1.0},
+				],
 				actionCallback: function(e, action){
 					if (action === 'saveAsBackground') {
 						var newColorDivParent = document.getElementsByClassName('cp-col1');
