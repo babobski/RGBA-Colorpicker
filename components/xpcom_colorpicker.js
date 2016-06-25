@@ -28,7 +28,7 @@ koColorPicker.prototype = {
     // properties required for XPCOM registration:
     classDescription: _bundle.GetStringFromName("johnDyersColorPicker.desc"),
     
-    classID:          Components.ID("{21e60192-24fd-11e6-b67b-9e71128cae77}"),
+    classID:          Components.ID("{9fcf3b94-37ec-11e6-ac61-9e71128cae77}"),
 
     QueryInterface: XPCOMUtils.generateQI([Ci.koIColorPicker,
                                            Ci.koIColorPickerAsync]),

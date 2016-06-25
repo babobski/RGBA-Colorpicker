@@ -2,12 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="chrome://RGBA_colorpicker/content/css/index.css" rel="stylesheet" type="text/css" />
 <title>RGBA Colorpicker</title>
 <script type="text/javascript" src="chrome://RGBA_colorpicker/content/js/colors.js"></script>
 <script type="text/javascript" src="chrome://RGBA_colorpicker/content/js/colorPicker.data.js"></script>
 <script type="text/javascript" src="chrome://RGBA_colorpicker/content/js/colorPicker.js"></script>
+<link href="chrome://RGBA_colorpicker/skin/index.css" rel="stylesheet" />
 <script type="text/javascript">
+	
+	var win = window.arguments[0];
+	var wm = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+	.getService(Components.interfaces.nsIWindowWatcher)
+	.getWindowEnumerator();
+	var index = 1;
+	var main = false;
+	
+	// get main window for access to xtk clipboard
+	while (wm.hasMoreElements()) {
+	  var wind = wm.getNext();
+	  if (wind.xtk !== undefined) {
+		main = wind;
+	  }
+	  index++;
+	}
 	
 	function rgbToHex(color) {
 		if (color.substr(0, 1) === "#") {
@@ -33,12 +49,61 @@
 		result = 'rgba('+r+','+g+','+b+','+opacity+')';
 		return result;
 	}
-
 	
+	function handleCopyPasteCut(event) {
+		var c = event.keyCode;
+		var ctrlDown = event.ctrlKey||event.metaKey; // Mac support
+		
+		if (ctrlDown && c == 67) { // copy
+			copyValue(event);
+		} else if (ctrlDown && c == 86) { // paste
+			pasteValue(event);
+		} else if (ctrlDown && c == 88) { // cut
+			cutValue(event);
+		} 
+	}
+	
+	function copyValue(event) {
+		var target = event.target;
+		
+		if (target.classList.contains('cp-disp')) {
+			main.xtk.clipboard.setText(target.innerHTML);
+			event.preventDefault(); 
+			return false;
+		}
+	}
+	
+	function cutValue(event) {
+		var target = event.target;
+		
+		if (target.classList.contains('cp-disp')) {
+			main.xtk.clipboard.setText(target.innerHTML);
+			target.innerHTML = '';
+			event.preventDefault(); 
+			return false;
+		}
+	}
+	
+	function pasteValue(event) {
+		var target = event.target;
+		event.stopPropagation();
+		event.preventDefault();
+		
+		pastedData = main.xtk.clipboard.getText();
+		pastedData = pastedData.replace(/^#/, ''); // if has hash only value
+		
+		if (target.classList.contains('cp-disp')) {
+			target.innerHTML = pastedData;
+			return false;
+		}
+	}
+	
+	window.addEventListener('keydown', handleCopyPasteCut);
+				
 	window.addEventListener("load", function(e) {
-		var hexColor = window.arguments[0].hexColor;
-		var startOpacity = window.arguments[0].opacity;
-		var startMode = window.arguments[0].colorMode || 'h';
+		var hexColor =win.hexColor;
+		var startOpacity =win.opacity;
+		var startMode =win.colorMode || 'h';
 		window.addHash = false;
 		if (hexColor[0] == "#") {
 			window.addHash = true;
@@ -68,12 +133,12 @@
 						var newAlpha = newColorStyle.opacity;
 						var hexColor = rgbToHex(newColor);
 						
-						window.arguments[0].hexColor = hexColor;
-						window.arguments[0].colorMode = startMode;
-						window.arguments[0].opacity = newAlpha; 
-						window.arguments[0].retval = 1;
-						if (window.retval && window.arguments[0].callback) {
-							window.arguments[0].callback(hexColor, newAlpha);
+						win.hexColor = hexColor;
+						win.colorMode = startMode;
+						win.opacity = newAlpha; 
+						win.retval = 1;
+						if (window.retval &&win.callback) {
+							win.callback(hexColor, newAlpha);
 						}
 						window.close();
 					} else if (action === 'resetColor') {
@@ -81,7 +146,8 @@
 					}
 				}
 			});
-		}, 50);
+			
+		}, 100);
 		
 	});
 </script>
