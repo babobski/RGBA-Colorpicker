@@ -29,7 +29,7 @@ rgbaColorPicker.prototype = {
     QueryInterface: XPCOMUtils.generateQI([Ci.koIColorPicker,
                                            Ci.koIColorPickerAsync]),
 
-    chromeURL: "chrome://RGBA_colorpicker/content/colorpicker.html",
+    chromeURL: "chrome://rgba-colorpicker/content/colorpicker.html",
 
     /**
      * Select a color from the Komodo color picker dialog.
