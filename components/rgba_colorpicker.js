@@ -15,25 +15,21 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
  *              XPCOM class definition                     *
  ***********************************************************/
 
-var _bundle = Components.classes["@mozilla.org/intl/stringbundle;1"]
-                .getService(Components.interfaces.nsIStringBundleService)
-                .createBundle("chrome://komodo/locale/library.properties");
-
 // Class constructor.
-function koColorPicker() {}
+function rgbaColorPicker() {}
 
 // Class definition.
-koColorPicker.prototype = {
+rgbaColorPicker.prototype = {
     
     // properties required for XPCOM registration:
-    classDescription: _bundle.GetStringFromName("johnDyersColorPicker.desc"),
+    classDescription: "RGBA Colorpicker",
     
-    classID:          Components.ID("{9fcf3b94-37ec-11e6-ac61-9e71128cae77}"),
+    classID:          Components.ID("{ab5e2112-d8ac-4794-8145-b3c4a5cd5ab7}"),
 
     QueryInterface: XPCOMUtils.generateQI([Ci.koIColorPicker,
                                            Ci.koIColorPickerAsync]),
 
-    chromeURL: "chrome://komodo/content/colorpicker/colorpicker.html",
+    chromeURL: "chrome://RGBA_colorpicker/content/rgba-colorpicker.html",
 
     /**
      * Select a color from the Komodo color picker dialog.
@@ -155,7 +151,7 @@ koColorPicker.prototype = {
 
 // XPCOM registration of class.
 if ("generateNSGetFactory" in XPCOMUtils) {
-    var NSGetFactory = XPCOMUtils.generateNSGetFactory([koColorPicker]);
+    var NSGetFactory = XPCOMUtils.generateNSGetFactory([rgbaColorPicker]);
 } else if ("generateNSGetModule" in XPCOMUtils) {
-    var NSGetModule = XPCOMUtils.generateNSGetModule([koColorPicker]);
+    var NSGetModule = XPCOMUtils.generateNSGetModule([rgbaColorPicker]);
 }
