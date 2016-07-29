@@ -1,0 +1,33 @@
+@import url("chrome://komodo/skin/global/colors.less");
+@import url("resource://profile/colors.less");
+
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+body#colorpicker {
+	width: 412px;
+	height: 323px;
+	overflow: hidden;
+}
+
+a {
+	color: @secondary-special;
+}
+.cp-app {
+	position: relative;
+	float: left;
+	border-radius: 0;
+	background: @contrast !important;
+	foreground: @foreground !important;
+}
+
+.cp-app .cp-resize {
+	display: none;
+}
+
+.cp-app .cp-exit {
+	display: none;
+}
+
