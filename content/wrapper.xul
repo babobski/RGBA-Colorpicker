@@ -1,0 +1,14 @@
+<?xml-stylesheet href="less://komodo/skin/global/global.less" type="text/css"?>
+<?xml-stylesheet href="less://rgba-colorpicker/skin/wrapper.less" type="text/css"?>
+
+<dialog xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        orient="vertical"
+        width="425"
+        height="360"
+        title="RGBA Color Picker"
+        buttons="">
+    
+    <browser flex="1" src="chrome://rgba-colorpicker/content/colorpicker.html"/>
+    
+</dialog>

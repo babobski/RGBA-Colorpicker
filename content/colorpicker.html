@@ -9,7 +9,7 @@
 <link href="chrome://rgba-colorpicker/skin/index.css" rel="stylesheet" />
 <script type="text/javascript">
 	
-	var win = window.arguments[0];
+	var win = window.parent.arguments[0];
 	var wm = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
 	.getService(Components.interfaces.nsIWindowWatcher)
 	.getWindowEnumerator();
@@ -141,9 +141,9 @@
 						if (window.retval &&win.callback) {
 							win.callback(hexColor, newAlpha);
 						}
-						window.close();
+						window.parent.close();
 					} else if (action === 'resetColor') {
-						window.close();
+						window.parent.close();
 					}
 				}
 			});
