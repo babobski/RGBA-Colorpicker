@@ -1,4 +1,2 @@
 content rgba-colorpicker content/
 skin rgba-colorpicker classic/1.0 skin/
-component {ab5e2112-d8ac-4794-8145-b3c4a5cd5ab7} components/component.js
-contract @babobski.com/rgbaColorPicker;1 {ab5e2112-d8ac-4794-8145-b3c4a5cd5ab7}

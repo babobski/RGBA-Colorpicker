@@ -1,7 +1,23 @@
-const { classes: Cc, interfaces: Ci, utils: Cu } = Components;
+const { classes: Cc, interfaces: Ci, utils: Cu, manager: Cm } = Components;
 Cu.import('resource://gre/modules/Services.jsm');
 
-function startup(data, reason) {};
+function startup(data, reason) {
+    
+    if ( ! ("@babobski.com/rgbaColorPicker;1" in Cc)) {
+        try {
+            var component = data.installPath.clone();
+            component.append("components");
+            component.append("component.manifest");
+    
+            var registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
+            registrar.autoRegister(component);
+        } catch (e) {
+            Cu.reportError("Commando: Exception while registering component for 'Files' scope");
+            Cu.reportError(e);
+        }
+    }
+    
+};
 
 function shutdown(data, reason) {};
 
