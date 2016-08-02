@@ -10,6 +10,8 @@
         <em:creator>Bob de Haas</em:creator>
         <em:homepageURL></em:homepageURL>
         <em:type>2</em:type> <!-- type=extension -->
+        <em:bootstrap>true</em:bootstrap>
+        <em:unpack>true</em:unpack>
 
         <em:targetApplication>
             <Description>
