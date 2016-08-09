@@ -1,9 +1,11 @@
 @import url("chrome://komodo/skin/global/colors.less");
 @import url("resource://profile/colors.less");
 
-body, html {
+body,
+html {
 	margin: 0;
 	padding: 0;
+	background: @background !important;
 }
 
 body#colorpicker {
@@ -15,19 +17,116 @@ body#colorpicker {
 a {
 	color: @secondary-special;
 }
-.cp-app {
-	position: relative;
-	float: left;
-	border-radius: 0;
-	background: @contrast !important;
-	foreground: @foreground !important;
-}
 
-.cp-app .cp-resize {
-	display: none;
+body {
+	
+	.cp-app .cp-resize {
+		display: none !important;
+	}
+	
+	.cp-app .cp-exit {
+		display: none !important;
+	}
+	
+	.cp-app {
+		color: @foreground !important;
+		background-color: @background !important;
+		float: left;
+		border-radius: 0;
+		.cp-panel {
+			background-color: darken(@background, 5%);
+			border-color: darken(@background, 5%);
+			.cp-disp {
+				background-color: @background;
+			}
+			.cp-cont,
+			.cp-cold {
+				border-color: @border;
+				border-top: none;
+				border-bottom: none;
+				height: 2px;
+				top: -2px; 
+			}
+		}
+	}
+	
+	.cp-slds .cp-curm,
+	.cp-panel .cp-disp,
+	.cp-panel .cp-nsarrow,
+	.cp-app .cp-exit,
+	.cp-app .cp-memo-cursor,
+	.cp-app .cp-resize {
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGEAAABDCAYAAACMYmueAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AgCEzcmHIMKiAAAASpJREFUeNrt2DFugzAUh/HPvUWlipyAJbvHjr1crtIxY8ZILDlBcxF3eWyFEMkRpny/MQ/pgf+xjUnAB9v2Dly3/ABvyBBkCIYgQzAEGYIhyBAMQYZgCDIEQ5AhGIIMwRBkCJIkSZIkabPSwut6IANH4AD8AANwAW6vuLFSymTPlNJtbyF8Al8x4EMMxiEGJwPfwLlyAA97ppTOe5kpPXACuol6F/W+5gwopZxKKd1EvYt6/18G+dFX1Bz/xvtE/R71XPGeciw5f/aM32v3bDqEYywHc4a4rpY1ejYdwrghzhnX61rW6Nl0CEsedsmgPWONnk2HsGTaL1k+nrFGz6ZDGDfAubejcfOu5QLkubejF/T0nLD3c4InZkmSJEmSJEmSJEmSJEmStFG/VABomh/c1FEAAAAASUVORK5CYII=') !important;
+	}
+	
+	.cp-panel .cp-hsv,
+	.cp-panel .cp-hsl,
+	.cp-panel .cp-rgb,
+	.cp-panel .cp-cmyk,
+	.cp-panel .cp-Lab,
+	.cp-panel .cp-alpha,
+	.no-alpha .cp-panel .cp-HEX,
+	.cp-panel .cp-HEX {
+		border-top-color: lighten(@border, 10%) !important;
+		border-bottom-color: darken(@border, 10%) !important;
+	}
+	
+	.cp-panel .cmyk-mode,
+	.cp-panel .hsv-mode,
+	.rgb-r .rgb-r-butt,
+	.rgb-g .rgb-g-butt,
+	.rgb-b .rgb-b-butt,
+	.hsv-h .hsv-h-butt,
+	.hsv-s .hsv-s-butt,
+	.hsv-v .hsv-v-butt,
+	.hsl-h .hsl-h-butt,
+	.hsl-s .hsl-s-butt,
+	.hsl-l .hsl-l-butt,
+	.cp-panel .rgb-r-labl,
+	.cp-panel .rgb-g-labl,
+	.cp-panel .rgb-b-labl,
+	.cp-panel .alpha-butt,
+	.cp-panel .HEX-butt,
+	.cp-panel .Lab-x-labl {
+		background-color: darken(@background, 12%) !important;
+		border-color:  @border !important;
+	}
+	
+	.cp-panel .cp-butt {
+		border-color: @border !important; 
+	}
+	
+	.cp-panel .cp-butt:active {
+		background-color: darken(@background, 20%) !important;
+	}
+	
+	.cp-panel .cp-disp {
+		border-color: @border !important
+	}
+	
+	.no-rgb-r .rgb-r-labl,
+	.no-rgb-g .rgb-g-labl,
+	.no-rgb-b .rgb-b-labl,
+	.mute-alpha .alpha-butt,
+	.no-HEX .HEX-butt,
+	.cmy-only .Lab-x-labl {
+		background-color: @background !important;
+	}
+	
+	.alpha-bg-b .cp-ctrl,
+	.cp-panel .cp-bres,
+	.cp-panel .cp-bsav {
+		background-color: darken(@background, 5%);
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	
+	.cp-panel .cp-col1,
+	.cp-panel .cp-col2,
+	.cp-panel .cp-bres,
+	.cp-panel .cp-bsav {
+		border-color: @border !important;
+	}
+	
 }
-
-.cp-app .cp-exit {
-	display: none;
-}
-

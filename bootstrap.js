@@ -12,7 +12,7 @@ function startup(data, reason) {
             var registrar = Cm.QueryInterface(Ci.nsIComponentRegistrar);
             registrar.autoRegister(component);
         } catch (e) {
-            Cu.reportError("Commando: Exception while registering component for 'Files' scope");
+            Cu.reportError("Commando: Exception while registering component for Colorpicker");
             Cu.reportError(e);
         }
     }
