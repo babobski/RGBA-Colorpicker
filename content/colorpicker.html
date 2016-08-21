@@ -138,7 +138,7 @@
 						win.colorMode = startMode;
 						win.opacity = newAlpha; 
 						win.retval = 1;
-						if (window.retval &&win.callback) {
+						if (win.retval &&win.callback) {
 							win.callback(hexColor, newAlpha);
 						}
 						window.parent.close();
