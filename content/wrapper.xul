@@ -2,12 +2,17 @@
 <?xml-stylesheet href="less://rgba-colorpicker/skin/wrapper.less" type="text/css"?>
 
 <window xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        orient="vertical"
-        width="425"
-        height="360"
-        title="RGBA Color Picker">
-    
-    <browser flex="1" src="chrome://rgba-colorpicker/content/colorpicker.html"/>
-    
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		orient="vertical"
+		hidechrome="true"
+		width="425"
+		height="360"
+		title="RGBA Color Picker">
+	
+	<titlebar id="RGBATitleBar" height="30" width="100%"  style="background: transparent;">
+		<label flex="1" style="text-align: center; padding: 5px 0;">
+			RGBA Colorpicker
+		</label>
+	</titlebar>
+	<browser flex="1" id="colorPickerWindow" src="chrome://rgba-colorpicker/content/colorpicker.html"/>
 </window>

@@ -6,16 +6,26 @@ html {
 	margin: 0;
 	padding: 0;
 	background: @background !important;
+	width: 100%;
+	height: 100%;
 }
 
 body#colorpicker {
-	width: 412px;
-	height: 323px;
+	width: 100%;
+	height: 100%;
 	overflow: hidden;
 }
 
 a {
 	color: @secondary-special;
+	color: #000000;
+}
+
+.rgbaButtons {
+	padding-bottom: 5px;
+	#close {
+		margin-right: 0;
+	}
 }
 
 body {
@@ -33,9 +43,16 @@ body {
 		background-color: @background !important;
 		float: left;
 		border-radius: 0;
+		font-family: 'Segoe UI', 'Droid Sans', 'Open Sans', sans-serif;
+		font-size: 10px;
+		line-height: 13px;
+		.cp-slds {
+			top: 0;
+		}
 		.cp-panel {
-			background-color: darken(@background, 5%);
-			border-color: darken(@background, 5%);
+			background-color: darken(@background, 4%);
+			border-color: darken(@background, 4%);
+			top: 0;
 			.cp-disp {
 				background-color: @background;
 			}
@@ -67,8 +84,8 @@ body {
 	.cp-panel .cp-alpha,
 	.no-alpha .cp-panel .cp-HEX,
 	.cp-panel .cp-HEX {
-		border-top-color: lighten(@border, 10%) !important;
-		border-bottom-color: darken(@border, 10%) !important;
+		border-top-color: transparent !important;
+		border-bottom-color: lighten(@border, 10%) !important;
 	}
 	
 	.cp-panel .cmyk-mode,
@@ -89,11 +106,11 @@ body {
 	.cp-panel .HEX-butt,
 	.cp-panel .Lab-x-labl {
 		background-color: darken(@background, 12%) !important;
-		border-color:  @border !important;
+		border-color:	@border !important;
 	}
 	
 	.cp-panel .cp-butt {
-		border-color: @border !important; 
+		border-color: transparent !important;
 	}
 	
 	.cp-panel .cp-butt:active {
@@ -116,17 +133,41 @@ body {
 	.alpha-bg-b .cp-ctrl,
 	.cp-panel .cp-bres,
 	.cp-panel .cp-bsav {
-		background-color: darken(@background, 5%);
+		background-color: darken(@background, 4%);
 		&:hover {
 			cursor: pointer;
 		}
 	}
 	
 	.cp-panel .cp-col1,
-	.cp-panel .cp-col2,
+	.cp-panel .cp-col2 {
+		border-color: darken(@background, 4%) !important;
+		line-height: 30px;
+	}
+	
+	
 	.cp-panel .cp-bres,
 	.cp-panel .cp-bsav {
-		border-color: @border !important;
+		background-color:	@button !important;
+		border-top: none !important;
+		border-color: @button !important;
+		color:	@button-foreground !important;
+		line-height: 28px;
+		&:hover, &:focus, &:active {
+			background-color: @contrast !important;
+			border-color: @contrast !important;
+		}
+	}
+	
+	.cp-panel .cp-bres {
+		border-right: 1px solid darken(@background, 4%) !important;
+	}
+	
+	.cp-panel .cp-bsav {
+		border-right: 1px solid darken(@background, 4%) !important;
 	}
 	
 }
+
+
+

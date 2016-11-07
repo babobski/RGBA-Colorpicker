@@ -99,12 +99,38 @@
 		}
 	}
 	
+	function saveToMerrory(colorPicker) {
+		var rgb_r = document.getElementsByClassName('rgb-r-disp')[0];
+		var rgb_g = document.getElementsByClassName('rgb-g-disp')[0];
+		var rgb_b = document.getElementsByClassName('rgb-b-disp')[0];
+		var alpha = document.getElementsByClassName('alpha-disp')[0];
+		var memoryColors = colorPicker.memoryColors;
+		var newVal = {
+			r: rgb_r.innerHTML,
+			g: rgb_g.innerHTML,
+			b: rgb_b.innerHTML,
+			a: alpha.innerHTML
+		};
+		
+		memoryColors.pop();
+		memoryColors.reverse();
+		memoryColors.push(newVal);
+		memoryColors.reverse();
+		
+		colorPicker.memoryColors = memoryColors;
+	}
+	
+	function setColorPicker(args) {
+		var RGBAColorPicker = new ColorPicker(args);
+	}
+	
 	window.addEventListener('keydown', handleCopyPasteCut);
 				
 	window.addEventListener("load", function(e) {
 		var hexColor =win.hexColor;
 		var startOpacity =win.opacity;
-		var startMode =win.colorMode || 'h';
+		var startMode = win.colorMode || 'h';
+		var memoryColors = JSON.parse(win.savedColors);
 		window.addHash = false;
 		if (hexColor[0] == "#") {
 			window.addHash = true;
@@ -112,19 +138,10 @@
 		}
 		
 		setTimeout(function(){
-			var color_picker = new ColorPicker({
+			setColorPicker({
 				color: convertHex(hexColor, startOpacity),
 				mode: 'hsv-h',
-				memoryColors: [
-				{r: 17, g: 17, b: 17, a: 1.0},
-				{r: 255, g: 255, b: 255, a: 1.0},
-				{r: 170, g: 170, b: 170, a: 1.0},
-				{r: 221, g: 221, b: 221, a: 1.0},
-				{r: 46, g: 204, b: 64, a: 1.0},
-				{r: 255, g: 65, b: 54, a: 1.0},
-				{r: 255, g: 220, b: 0, a: 1.0},
-				{r: 0, g: 116, b: 217, a: 1.0},
-				],
+				memoryColors: memoryColors,
 				actionCallback: function(e, action){
 					if (action === 'saveAsBackground') {
 						var newColorDivParent = document.getElementsByClassName('cp-col1');
@@ -133,22 +150,26 @@
 						var newColor = newColorStyle.backgroundColor;
 						var newAlpha = newColorStyle.opacity;
 						var hexColor = rgbToHex(newColor);
+						var savedColors = JSON.stringify(this.memoryColors);
 						
 						win.hexColor = hexColor;
 						win.colorMode = startMode;
 						win.opacity = newAlpha; 
 						win.retval = 1;
+						win.savedColors = savedColors;
 						if (win.retval &&win.callback) {
 							win.callback(hexColor, newAlpha);
 						}
 						window.parent.close();
 					} else if (action === 'resetColor') {
 						window.parent.close();
+					} else if (action === 'toMemory') {
+						saveToMerrory(this);
 					}
 				}
-			});
-			
-		}, 100);
+			});	
+		}, 300);
+		
 		
 	});
 </script>
