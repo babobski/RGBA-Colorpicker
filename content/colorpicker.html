@@ -6,7 +6,7 @@
 <script type="text/javascript" src="chrome://rgba-colorpicker/content/js/colors.js"></script>
 <script type="text/javascript" src="chrome://rgba-colorpicker/content/js/colorPicker.data.js"></script>
 <script type="text/javascript" src="chrome://rgba-colorpicker/content/js/colorPicker.js"></script>
-<link href="less://rgba-colorpicker/skin/colorpicker.less" rel="stylesheet" />
+<link href="less://rgba-colorpicker/skin/colorpicker.less?v=1.0" rel="stylesheet" />
 <script type="text/javascript">
 	
 	var win = window.parent.arguments[0];
@@ -25,6 +25,8 @@
 	  }
 	  index++;
 	}
+	
+	var koPrefs = main.require("ko/prefs");
 	
 	function rgbToHex(color) {
 		if (color.substr(0, 1) === "#") {
@@ -130,7 +132,7 @@
 		var hexColor =win.hexColor;
 		var startOpacity =win.opacity;
 		var startMode = win.colorMode || 'h';
-		var memoryColors = JSON.parse(win.savedColors);
+		var memoryColors = win.savedColors !== undefined ? JSON.parse(win.savedColors) : JSON.parse(koPrefs.getString('colorpicker.savedColors'));
 		window.addHash = false;
 		if (hexColor[0] == "#") {
 			window.addHash = true;
@@ -156,7 +158,9 @@
 						win.colorMode = startMode;
 						win.opacity = newAlpha; 
 						win.retval = 1;
-						win.savedColors = savedColors;
+						if (win.savedColors !== undefined) {
+							win.savedColors = savedColors;
+						}
 						if (win.retval &&win.callback) {
 							win.callback(hexColor, newAlpha);
 						}
