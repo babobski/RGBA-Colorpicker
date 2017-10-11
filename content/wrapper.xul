@@ -6,11 +6,19 @@
 		orient="vertical"
 		hidechrome="true"
 		width="425"
-		height="360"
+		height="370"
 		title="RGBA Color Picker">
+	<script>
+		// Close window when esc is pressed
+		window.addEventListener('keypress', function(event){
+			if (event.keyCode === 27) {
+				window.close();
+			}
+		});
+	</script>
 	
-	<titlebar id="RGBATitleBar" height="30" width="100%"  style="background: transparent;">
-		<label flex="1" style="text-align: center; padding: 5px 0;">
+	<titlebar id="RGBATitleBar" height="40" width="100%"  style="background: transparent;">
+		<label flex="1" style="text-align: center; padding: 10px 0; pointer-events: none;">
 			RGBA Colorpicker
 		</label>
 	</titlebar>

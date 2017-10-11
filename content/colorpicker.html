@@ -6,7 +6,7 @@
 <script type="text/javascript" src="chrome://rgba-colorpicker/content/js/colors.js"></script>
 <script type="text/javascript" src="chrome://rgba-colorpicker/content/js/colorPicker.data.js"></script>
 <script type="text/javascript" src="chrome://rgba-colorpicker/content/js/colorPicker.js"></script>
-<link href="less://rgba-colorpicker/skin/colorpicker.less?v=1.0" rel="stylesheet" />
+<link href="less://rgba-colorpicker/skin/colorpicker.less?v=1.1" rel="stylesheet" />
 <script type="text/javascript">
 	
 	var win = window.parent.arguments[0];
@@ -175,6 +175,13 @@
 		}, 300);
 		
 		
+	});
+	
+	// Close window when esc is pressed
+	window.addEventListener('keypress', function(event){
+		if (event.keyCode === 27) {
+			window.parent.close();
+		}
 	});
 </script>
 </head>

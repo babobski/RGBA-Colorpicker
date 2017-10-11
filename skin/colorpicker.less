@@ -18,7 +18,6 @@ body#colorpicker {
 
 a {
 	color: @secondary-special;
-	color: #000000;
 }
 
 .rgbaButtons {
@@ -43,8 +42,8 @@ body {
 		background-color: @background !important;
 		float: left;
 		border-radius: 0;
-		font-family: 'Segoe UI', 'Droid Sans', 'Open Sans', sans-serif;
-		font-size: 10px;
+		font-family: "Consolas", "Courier New", "Courier", "monaco", monospace; 
+		font-size: 11px;
 		line-height: 13px;
 		.cp-slds {
 			top: 0;
@@ -85,7 +84,7 @@ body {
 	.no-alpha .cp-panel .cp-HEX,
 	.cp-panel .cp-HEX {
 		border-top-color: transparent !important;
-		border-bottom-color: lighten(@border, 10%) !important;
+		border-bottom-color: transparent !important;
 	}
 	
 	.cp-panel .cmyk-mode,
@@ -106,7 +105,7 @@ body {
 	.cp-panel .HEX-butt,
 	.cp-panel .Lab-x-labl {
 		background-color: darken(@background, 12%) !important;
-		border-color:	@border !important;
+		border-color: @border !important;
 	}
 	
 	.cp-panel .cp-butt {
@@ -148,14 +147,17 @@ body {
 	
 	.cp-panel .cp-bres,
 	.cp-panel .cp-bsav {
-		background-color:	@button !important;
+		background-color: @button !important;
 		border-top: none !important;
 		border-color: @button !important;
-		color:	@button-foreground !important;
+		color: @button-foreground !important;
 		line-height: 28px;
+		font-family: @font !important;
 		&:hover, &:focus, &:active {
-			background-color: @contrast !important;
-			border-color: @contrast !important;
+			background-color: @secondary-special !important;
+			border-color: @secondary-special !important;
+			color: @foreground-special !important;
+			color: #222;
 		}
 	}
 	
